@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/gumle/Documents/UPR/pacman
+CMAKE_SOURCE_DIR = /home/gumle/Documents/UPR/Pacman_SDL2/Pacman_SDL2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/gumle/Documents/UPR/pacman/build
+CMAKE_BINARY_DIR = /home/gumle/Documents/UPR/Pacman_SDL2/Pacman_SDL2/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -81,14 +81,14 @@ clean: CMakeFiles/hra.dir/clean
 CMakeFiles/hra.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hra.dir/build.make CMakeFiles/hra.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hra.dir/build.make CMakeFiles/hra.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/gumle/Documents/UPR/pacman/build/CMakeFiles --progress-num=1,2,3 "Built target hra"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/gumle/Documents/UPR/Pacman_SDL2/Pacman_SDL2/build/CMakeFiles --progress-num=1,2,3 "Built target hra"
 .PHONY : CMakeFiles/hra.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/hra.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/gumle/Documents/UPR/pacman/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/gumle/Documents/UPR/Pacman_SDL2/Pacman_SDL2/build/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/hra.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/gumle/Documents/UPR/pacman/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/gumle/Documents/UPR/Pacman_SDL2/Pacman_SDL2/build/CMakeFiles 0
 .PHONY : CMakeFiles/hra.dir/rule
 
 # Convenience name for target.
