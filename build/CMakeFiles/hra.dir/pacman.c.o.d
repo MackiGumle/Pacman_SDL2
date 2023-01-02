@@ -1,5 +1,5 @@
-CMakeFiles/hra.dir/main.c.o: \
- /home/gumle/Documents/UPR/Pacman_SDL2/Pacman_SDL2/main.c \
+CMakeFiles/hra.dir/pacman.c.o: \
+ /home/gumle/Documents/UPR/Pacman_SDL2/Pacman_SDL2/pacman.c \
  /usr/include/stdc-predef.h \
  /home/gumle/Documents/UPR/Pacman_SDL2/Pacman_SDL2/pacman.h \
  /usr/include/SDL2/SDL.h /usr/include/SDL2/SDL_main.h \
@@ -176,4 +176,4 @@ CMakeFiles/hra.dir/main.c.o: \
  /usr/include/SDL2/SDL_shape.h /usr/include/SDL2/SDL_system.h \
  /usr/include/SDL2/SDL_timer.h /usr/include/SDL2/SDL_version.h \
  /usr/include/SDL2/SDL_locale.h /usr/include/SDL2/SDL_misc.h \
- /usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h /usr/include/assert.h
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h

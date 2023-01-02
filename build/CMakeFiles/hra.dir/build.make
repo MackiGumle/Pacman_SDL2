@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/gumle/Documents/UPR/pacman
+CMAKE_SOURCE_DIR = /home/gumle/Documents/UPR/Pacman_SDL2/Pacman_SDL2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/gumle/Documents/UPR/pacman/build
+CMAKE_BINARY_DIR = /home/gumle/Documents/UPR/Pacman_SDL2/Pacman_SDL2/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/hra.dir/depend.make
@@ -72,30 +72,30 @@ include CMakeFiles/hra.dir/flags.make
 CMakeFiles/hra.dir/main.c.o: CMakeFiles/hra.dir/flags.make
 CMakeFiles/hra.dir/main.c.o: ../main.c
 CMakeFiles/hra.dir/main.c.o: CMakeFiles/hra.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gumle/Documents/UPR/pacman/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/hra.dir/main.c.o"
-	/usr/bin/c89-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/hra.dir/main.c.o -MF CMakeFiles/hra.dir/main.c.o.d -o CMakeFiles/hra.dir/main.c.o -c /home/gumle/Documents/UPR/pacman/main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gumle/Documents/UPR/Pacman_SDL2/Pacman_SDL2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/hra.dir/main.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/hra.dir/main.c.o -MF CMakeFiles/hra.dir/main.c.o.d -o CMakeFiles/hra.dir/main.c.o -c /home/gumle/Documents/UPR/Pacman_SDL2/Pacman_SDL2/main.c
 
 CMakeFiles/hra.dir/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/hra.dir/main.c.i"
-	/usr/bin/c89-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gumle/Documents/UPR/pacman/main.c > CMakeFiles/hra.dir/main.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gumle/Documents/UPR/Pacman_SDL2/Pacman_SDL2/main.c > CMakeFiles/hra.dir/main.c.i
 
 CMakeFiles/hra.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/hra.dir/main.c.s"
-	/usr/bin/c89-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gumle/Documents/UPR/pacman/main.c -o CMakeFiles/hra.dir/main.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gumle/Documents/UPR/Pacman_SDL2/Pacman_SDL2/main.c -o CMakeFiles/hra.dir/main.c.s
 
 CMakeFiles/hra.dir/pacman.c.o: CMakeFiles/hra.dir/flags.make
 CMakeFiles/hra.dir/pacman.c.o: ../pacman.c
 CMakeFiles/hra.dir/pacman.c.o: CMakeFiles/hra.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gumle/Documents/UPR/pacman/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/hra.dir/pacman.c.o"
-	/usr/bin/c89-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/hra.dir/pacman.c.o -MF CMakeFiles/hra.dir/pacman.c.o.d -o CMakeFiles/hra.dir/pacman.c.o -c /home/gumle/Documents/UPR/pacman/pacman.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gumle/Documents/UPR/Pacman_SDL2/Pacman_SDL2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/hra.dir/pacman.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/hra.dir/pacman.c.o -MF CMakeFiles/hra.dir/pacman.c.o.d -o CMakeFiles/hra.dir/pacman.c.o -c /home/gumle/Documents/UPR/Pacman_SDL2/Pacman_SDL2/pacman.c
 
 CMakeFiles/hra.dir/pacman.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/hra.dir/pacman.c.i"
-	/usr/bin/c89-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gumle/Documents/UPR/pacman/pacman.c > CMakeFiles/hra.dir/pacman.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gumle/Documents/UPR/Pacman_SDL2/Pacman_SDL2/pacman.c > CMakeFiles/hra.dir/pacman.c.i
 
 CMakeFiles/hra.dir/pacman.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/hra.dir/pacman.c.s"
-	/usr/bin/c89-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gumle/Documents/UPR/pacman/pacman.c -o CMakeFiles/hra.dir/pacman.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gumle/Documents/UPR/Pacman_SDL2/Pacman_SDL2/pacman.c -o CMakeFiles/hra.dir/pacman.c.s
 
 # Object files for target hra
 hra_OBJECTS = \
@@ -109,7 +109,7 @@ hra: CMakeFiles/hra.dir/main.c.o
 hra: CMakeFiles/hra.dir/pacman.c.o
 hra: CMakeFiles/hra.dir/build.make
 hra: CMakeFiles/hra.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/gumle/Documents/UPR/pacman/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable hra"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/gumle/Documents/UPR/Pacman_SDL2/Pacman_SDL2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable hra"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/hra.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -121,6 +121,6 @@ CMakeFiles/hra.dir/clean:
 .PHONY : CMakeFiles/hra.dir/clean
 
 CMakeFiles/hra.dir/depend:
-	cd /home/gumle/Documents/UPR/pacman/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/gumle/Documents/UPR/pacman /home/gumle/Documents/UPR/pacman /home/gumle/Documents/UPR/pacman/build /home/gumle/Documents/UPR/pacman/build /home/gumle/Documents/UPR/pacman/build/CMakeFiles/hra.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/gumle/Documents/UPR/Pacman_SDL2/Pacman_SDL2/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/gumle/Documents/UPR/Pacman_SDL2/Pacman_SDL2 /home/gumle/Documents/UPR/Pacman_SDL2/Pacman_SDL2 /home/gumle/Documents/UPR/Pacman_SDL2/Pacman_SDL2/build /home/gumle/Documents/UPR/Pacman_SDL2/Pacman_SDL2/build /home/gumle/Documents/UPR/Pacman_SDL2/Pacman_SDL2/build/CMakeFiles/hra.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/hra.dir/depend
 

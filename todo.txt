@@ -1,0 +1,5 @@
+Dodelat serazeni moznych cest
+Vybrat nejkratsi moznou cestu
+dokoncit ghost AI --dokaze jit do steny
+udelat vyhru / prohru
+grafika
