@@ -1,1 +1,0 @@
-/usr/bin/cc  -fsanitize=address CMakeFiles/hra.dir/main.c.o CMakeFiles/hra.dir/pacman.c.o -o hra  -L/usr/lib/x86_64-linux-gnu  -lSDL2 -lm 

@@ -18,10 +18,10 @@ enum cell_type {
 };
 
 enum direction {
-    UP,
     RIGHT,
+    DOWN,
     LEFT,
-    DOWN
+    UP
 };
 
 struct map {

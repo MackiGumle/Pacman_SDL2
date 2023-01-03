@@ -1,7 +1,8 @@
 #include "pacman.h"
+#include <string.h>
 
-
-int map_load(struct game *game, const char *filename) {
+int map_load(struct game *game, const char *filename)
+{
     
     FILE *file = fopen(filename, "r");
     if (!file) {
@@ -46,7 +47,7 @@ int map_load(struct game *game, const char *filename) {
                     }
                     break;
                 default:
-                    SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Invalid map data at (%d,%d) = '%c'", x, y, c);
+                    SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Invalid map data at (%d,%d) = '%c'\nMust be: ' '/'#'/'.'/'o'\n", x, y, c);
                     fclose(file);
                     return -1;
             }
@@ -61,7 +62,8 @@ int map_load(struct game *game, const char *filename) {
     return 0;
 }
 
-void game_init(struct game *game) {
+void game_init(struct game *game)
+{
     // Loads map data from file
     if (map_load(game, "map.txt") < 0) {
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Failed to load map.");
@@ -100,14 +102,14 @@ int turn_back(int dir)
 {
     switch (dir)
     {
-        case 0:
-            return 3;
-        case 1:
-            return 2;
-        case 2:
-            return 1;
-        case 3:
-            return 0;
+        case UP:
+            return DOWN;
+        case DOWN:
+            return UP;
+        case RIGHT:
+            return LEFT;
+        case LEFT:
+            return RIGHT;
     }
 }
 
@@ -328,6 +330,7 @@ void print_game(const struct game* game){
             for (int i = 0; i < 4; i++){
                 if(game->ghosts[i].pos.x == x && game->ghosts[i].pos.y == y && !ghost) {
                     ghost = true;
+                    break;
                 }
                 
                 /*if(game->ghosts[i].tar.x == x && game->ghosts[i].tar.y == y) {
