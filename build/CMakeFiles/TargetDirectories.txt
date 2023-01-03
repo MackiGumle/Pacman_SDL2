@@ -1,3 +1,0 @@
-/home/gumle/Documents/UPR/Pacman_SDL2/Pacman_SDL2/build/CMakeFiles/hra.dir
-/home/gumle/Documents/UPR/Pacman_SDL2/Pacman_SDL2/build/CMakeFiles/edit_cache.dir
-/home/gumle/Documents/UPR/Pacman_SDL2/Pacman_SDL2/build/CMakeFiles/rebuild_cache.dir
