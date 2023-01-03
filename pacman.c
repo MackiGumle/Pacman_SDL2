@@ -143,7 +143,7 @@ void pacman_move(struct game *game) {
         case CELL_POWER_PILL:
             game->score += 5;
             game->map.cells[move.x][move.y] = CELL_EMPTY;
-            game->pacman.power_pill_timer += 5000;
+            game->pacman.power_pill_timer += 2500;
             break;
     }
 }
@@ -153,11 +153,13 @@ void ghosts_move(struct game *game)
     int disTemp[2]; //Temp 0-distance, 1-direction
     int dis[2][4]; // 0-Distance, 1-direction
     struct pos move[4]; // Paths up, right, left, down
-
+    bool moved;
 
     for (int i = 0; i < 4; i++) { // For each ghost
         if (game->ghosts[i].stun_timer != 0) // Skips turn of stunned ghost
             continue;
+
+        moved = false;
 
         for (int j = 0; j < 4; j++) { // Scans positions
             // Set destination for ghost 
@@ -192,8 +194,16 @@ void ghosts_move(struct game *game)
             if (is_path(game, move[dis[1][j]]) && dis[1][j] != turn_back(game->ghosts[i].dir)) {
                 game->ghosts[i].dir = dis[1][j];
                 game->ghosts[i].pos = move[game->ghosts[i].dir];
+                moved = true;
                 break;
             }
+        }
+
+        // Ghost got stuck
+        if(!moved) {
+            game->ghosts[i].dir = turn_back(game->ghosts[i].dir);
+            game->ghosts[i].pos = move[game->ghosts[i].dir];      
+            moved = true;
         }
     }
 
@@ -223,7 +233,7 @@ void hit_check(struct game *game)
         if(game->ghosts[i].pos.x == game->pacman.pos.x && game->ghosts[i].pos.y == game->pacman.pos.y)
             if(game->pacman.power_pill_timer == 0 && !(game->ghosts[i].stun_timer > 0)) { // Ghost isnt stunned and pacman has no power
                 game->pacman.lives--;
-                //pacman_respawn(game);
+                pacman_respawn(game);
             }
             else if(!(game->ghosts[i].stun_timer > 0)) { // Ghost eaten if not stunned
                 // Respawn eaten ghost
@@ -243,13 +253,11 @@ void game_update(struct game *game, int deltaTime)
 
         // Ghost panic
         for(int i = 0; i < 4; i++) {
-            //game->ghosts[i].tar.x = rand() % MAP_WIDTH;
-            //game->ghosts[i].tar.y = rand() % MAP_WIDTH;
-            game->ghosts[i].tar.x = MAP_WIDTH - game->pacman.pos.x;
-            game->ghosts[i].tar.y = MAP_HEIGHT - game->pacman.pos.y;
-
+            game->ghosts[i].tar.x = rand() % MAP_WIDTH;
+            game->ghosts[i].tar.y = rand() % MAP_WIDTH;
+            
             // Scared ghosts spawn points
-            if(rand() % 100 == 0)
+            if(rand() % 900 == 0)
                 game->map.cells[game->ghosts[i].pos.x][game->ghosts[i].pos.y] = CELL_POWER_PILL; 
             else if(game->map.cells[game->ghosts[i].pos.x][game->ghosts[i].pos.y] != CELL_POINT && game->map.cells[game->ghosts[i].pos.x][game->ghosts[i].pos.y] != CELL_POWER_PILL) {
                 game->map.cells[game->ghosts[i].pos.x][game->ghosts[i].pos.y] = CELL_POINT; 
@@ -259,13 +267,7 @@ void game_update(struct game *game, int deltaTime)
     } else {
         game->pacman.power_pill_timer = 0;
 
-       /*game->ghosts[0].tar = game->pacman.pos;
-        game->ghosts[1].tar = game->pacman.pos;
-        game->ghosts[2].tar = game->pacman.pos;
-        game->ghosts[3].tar = game->pacman.pos;*/
-
-        game->ghosts[0].tar.x = game->pacman.pos.x + game->dir[game->pacman.dir].x;
-        game->ghosts[0].tar.y = game->pacman.pos.y + game->dir[game->pacman.dir].y;
+        game->ghosts[0].tar = game->pacman.pos;
 
         game->ghosts[1].tar.x = game->pacman.pos.x + game->dir[game->pacman.dir].y*2;
         game->ghosts[1].tar.y = game->pacman.pos.y + game->dir[game->pacman.dir].x*2;
@@ -273,8 +275,8 @@ void game_update(struct game *game, int deltaTime)
         game->ghosts[2].tar.x = game->pacman.pos.x + game->dir[turn_back(game->pacman.dir)].y;
         game->ghosts[2].tar.y = game->pacman.pos.y + game->dir[turn_back(game->pacman.dir)].x;
 
-        game->ghosts[3].tar.x = game->pacman.pos.x - 5;
-        game->ghosts[3].tar.y = game->pacman.pos.y - 1;
+        game->ghosts[3].tar.x = game->pacman.pos.x + game->dir[game->pacman.dir].x;
+        game->ghosts[3].tar.y = game->pacman.pos.y + game->dir[game->pacman.dir].y;
     }
 
     for(int i = 0; i < 4; i++) {
@@ -290,7 +292,7 @@ void game_update(struct game *game, int deltaTime)
 
 void print_game(const struct game* game){
     bool ghost = false; // Ghost was printed
-    bool tar = false; // Target was printed
+    //bool tar = false; // Target was printed
     int j;
 
     
@@ -300,12 +302,12 @@ void print_game(const struct game* game){
         printf("\n");
 
         for(j = 0; j < 4; j++)
-            printf("x:%d y:%d\t|", game->ghosts[j].pos.x, game->ghosts[j].pos.y);
+            printf("x:%d y:%d \t|", game->ghosts[j].pos.x, game->ghosts[j].pos.y);
         
         printf("\n");
 
         for(j = 0; j < 4; j++)
-            printf("dir:%d\t|", game->ghosts[j].dir);
+            printf("dir:%d \t|", game->ghosts[j].dir);
         
         printf("\n");
 
@@ -327,10 +329,10 @@ void print_game(const struct game* game){
                 if(game->ghosts[i].pos.x == x && game->ghosts[i].pos.y == y && !ghost) {
                     ghost = true;
                 }
-
-                if(game->ghosts[i].tar.x == x && game->ghosts[i].tar.y == y) {
+                
+                /*if(game->ghosts[i].tar.x == x && game->ghosts[i].tar.y == y) {
                     tar = true;   
-                }
+                }*/
             }
 
             if(ghost){
@@ -339,11 +341,11 @@ void print_game(const struct game* game){
                 continue;
             }
 
-            if(tar){
+            /*if(tar){
                 printf("x");
                 tar = false;
                 continue;
-            }
+            }*/
 
             if(game->pacman.pos.x == x && game->pacman.pos.y == y){
                 printf("C");
