@@ -6,8 +6,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define MAP_WIDTH  25
-#define MAP_HEIGHT 25
+#define MAP_WIDTH  19
+#define MAP_HEIGHT 19
 
 
 enum cell_type {

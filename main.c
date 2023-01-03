@@ -39,6 +39,7 @@ int main()
     while (!quit){ // game loop
         LAST = NOW;
 
+        // Input handling
         while (SDL_PollEvent(&e)){
             if (e.type == SDL_QUIT)
                 quit = true;
@@ -62,14 +63,12 @@ int main()
                         game.pacman.dir = DOWN;
                         break;
                     
-                    case SDLK_KP_MULTIPLY:
-                        game.pacman.power_pill_timer += 1000;
-                        break;
                 }
                 
             }
         }
 
+        // Limit game speed
         if(frameTime >= 1000 / 8){
             frameTime = 0;
 
@@ -90,11 +89,11 @@ int main()
         
         SDL_RenderPresent(renderer);  // Prezentace kreslítka
 
+
         NOW = SDL_GetPerformanceCounter();
-        deltaTime = (double)((NOW - LAST)*1000 / (double)SDL_GetPerformanceFrequency() );
-
+        deltaTime = (double)((NOW - LAST)*1000 / (double)SDL_GetPerformanceFrequency());
         frameTime += deltaTime;
-
+        // Limit performance
         if(deltaTime < msf){
             SDL_Delay(msf - deltaTime);
         }
