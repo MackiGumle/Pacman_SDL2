@@ -42,12 +42,17 @@ int main()
     Uint64 LAST = 0;
     double deltaTime = 0;
     double frameTime = 0;
-    
+    struct vars s = {.var = {3, 5, 2}, .sel = 0};
+
     bool quit = false;
     bool menu = true;
     struct text menuHead;
     struct text menuText;        
     struct text menuScore;
+    struct text menuLives;
+    struct text menuSpeed;
+    struct text menuPower;    
+
     struct text textLives;
     struct text textScore;    
     struct text textPower;  
@@ -57,7 +62,7 @@ int main()
    
     struct game game;
     
-    game_init(&game);
+    game_init(&game, s);
 
     while (!quit){ // game loop
         LAST = NOW;
@@ -71,25 +76,37 @@ int main()
                     switch (e.key.keysym.sym) {
 
                         case SDLK_LEFT: 
+                            if(menu && s.var[s.sel] > 1) {
+                                s.var[s.sel]--;
+                            }else
                                 game.pacman.dir = LEFT;
                             break;                   
 
                         case SDLK_RIGHT: 
+                            if(menu) {
+                                s.var[s.sel]++;
+                            }else
                                 game.pacman.dir = RIGHT;
                             break;                    
 
                         case SDLK_UP: 
+                            if(menu && s.sel > 0) {
+                                s.sel--;
+                            }else
                                 game.pacman.dir = UP;
                             break;
 
                         case SDLK_DOWN: 
+                            if(menu && s.sel < 2) {
+                                s.sel++;
+                            }else
                                 game.pacman.dir = DOWN;
                             break;
 
                         case SDLK_RETURN:
                             if(menu) {
                                 menu = false;
-                                game_init(&game);
+                                game_init(&game, s);
                             }
                             break;
                     }
@@ -98,12 +115,12 @@ int main()
 
         if(!menu) {
             // Limit game speed
-            if(frameTime >= 1000 / 8){
+            if(frameTime >= 1000 / s.var[1]){
                 frameTime = 0;
 
                 ghosts_move(&game);
                 hit_check(&game);
-                pacman_move(&game);
+                pacman_move(&game, s);
                 hit_check(&game);
             }
 
@@ -117,8 +134,8 @@ int main()
             if(game.game_over)
                 menu = true;
         } else {
-            init_menu(renderer, &menuHead, &menuText, &menuScore, game.score, font, hFont);
-            draw_menu(renderer, &menuHead, &menuText, &menuScore);
+            init_menu(renderer, &menuHead, &menuText, &menuScore, &menuLives, &menuSpeed, &menuPower, s, game.score, font, hFont);
+            draw_menu(renderer, &menuHead, &menuText, &menuScore, &menuLives, &menuSpeed, &menuPower, sprites, s);
         }
 
 
@@ -144,6 +161,9 @@ int main()
     SDL_DestroyTexture(menuHead.texture);
     SDL_DestroyTexture(menuText.texture);
     SDL_DestroyTexture(menuScore.texture);
+    SDL_DestroyTexture(menuLives.texture);
+    SDL_DestroyTexture(menuSpeed.texture);
+    SDL_DestroyTexture(menuPower.texture);
 
     SDL_DestroyTexture(textLives.texture);
     SDL_DestroyTexture(textScore.texture);

@@ -1,6 +1,6 @@
 #include "grafika.h"
 
-void init_menu(SDL_Renderer *renderer, struct text *menuHead, struct text *menuText, struct text *menuScore, int score, TTF_Font *font, TTF_Font *hFont)
+void init_menu(SDL_Renderer *renderer, struct text *menuHead, struct text *menuText, struct text *menuScore, struct text *menuLives, struct text *menuSpeed, struct text *menuPower, struct vars s, int score, TTF_Font *font, TTF_Font *hFont)
 {    
     // Header
     menuHead->color.r = 255;
@@ -46,18 +46,84 @@ void init_menu(SDL_Renderer *renderer, struct text *menuHead, struct text *menuT
     menuScore->texture = SDL_CreateTextureFromSurface(renderer, menuScore->surface);
 
     menuScore->text.x = WINDOW_WIDTH / 2 - FONT_HSIZE * 5;
-    menuScore->text.y = WINDOW_HEIGT / 2 + FONT_HSIZE;
+    menuScore->text.y = WINDOW_HEIGT / 2 + FONT_HSIZE - 10;
     menuScore->text.w = menuScore->surface->w;
     menuScore->text.h = menuScore->surface->h;
 
     SDL_FreeSurface(menuScore->surface);
+
+    // Lives
+    menuLives->color.r = 0;
+    menuLives->color.g = 255;
+    menuLives->color.b = 0;
+    menuLives->color.a = 255;
+    
+    sprintf(text, "lives: %d", s.var[0]);
+    menuLives->surface = TTF_RenderText_Solid(font, text, menuLives->color);
+    menuLives->texture = SDL_CreateTextureFromSurface(renderer, menuLives->surface);
+
+    menuLives->text.x = 50;
+    menuLives->text.y = WINDOW_HEIGT - FONT_SIZE * 3 - 10;
+    menuLives->text.w = menuLives->surface->w;
+    menuLives->text.h = menuLives->surface->h;
+
+    SDL_FreeSurface(menuLives->surface);
+
+    // Speed
+    menuSpeed->color.r = 255;
+    menuSpeed->color.g = 255;
+    menuSpeed->color.b = 0;
+    menuSpeed->color.a = 255;
+    
+    sprintf(text, "speed: %d", s.var[1]);
+    menuSpeed->surface = TTF_RenderText_Solid(font, text, menuSpeed->color);
+    menuSpeed->texture = SDL_CreateTextureFromSurface(renderer, menuSpeed->surface);
+
+    menuSpeed->text.x = 50;
+    menuSpeed->text.y = WINDOW_HEIGT - FONT_SIZE * 2 - 10;
+    menuSpeed->text.w = menuSpeed->surface->w;
+    menuSpeed->text.h = menuSpeed->surface->h;
+
+    SDL_FreeSurface(menuSpeed->surface);
+
+    // Power
+    menuPower->color.r = 0;
+    menuPower->color.g = 255;
+    menuPower->color.b = 255;
+    menuPower->color.a = 255;
+    
+    sprintf(text, "power: %ds", s.var[2]);
+    menuPower->surface = TTF_RenderText_Solid(font, text, menuPower->color);
+    menuPower->texture = SDL_CreateTextureFromSurface(renderer, menuPower->surface);
+
+    menuPower->text.x = 50;
+    menuPower->text.y = WINDOW_HEIGT - FONT_SIZE - 10;
+    menuPower->text.w = menuPower->surface->w;
+    menuPower->text.h = menuPower->surface->h;
+
+    SDL_FreeSurface(menuPower->surface);
 }
 
-void draw_menu(SDL_Renderer *renderer,const struct text *menuHead, const struct text *menuText, struct text *menuScore)
+void draw_menu(SDL_Renderer *renderer,const struct text *menuHead, const struct text *menuText, struct text *menuScore, struct text *menuLives, struct text *menuSpeed, struct text *menuPower, SDL_Texture *sprites, struct vars s)
 {
+    SDL_Rect source;
+    source.x = 128;
+    source.y = 32;
+    source.w = source.h = 32;
+    
+    SDL_Rect dest;
+    dest.x = 250;
+    dest.y = WINDOW_HEIGT - FONT_SIZE * (3 - s.sel) - 10;
+    dest.w = dest.h = 32;  
+    
     SDL_RenderCopy(renderer, menuHead->texture, NULL, &menuHead->text);
     SDL_RenderCopy(renderer, menuText->texture, NULL, &menuText->text);
     SDL_RenderCopy(renderer, menuScore->texture, NULL, &menuScore->text);
+    SDL_RenderCopy(renderer, menuLives->texture, NULL, &menuLives->text);
+    SDL_RenderCopy(renderer, menuSpeed->texture, NULL, &menuSpeed->text);
+    SDL_RenderCopy(renderer, menuPower->texture, NULL, &menuPower->text);
+    SDL_RenderCopy(renderer, sprites, &source, &dest);
+
 }
 
 void init_stats(SDL_Renderer *renderer, struct text *textLives, struct text *textScore, struct text *textPower, struct text *textPoints, TTF_Font *font, struct game *game)
