@@ -62,7 +62,7 @@ int map_load(struct game *game, const char *filename)
     return 0;
 }
 
-void game_init(struct game *game)
+void game_init(struct game *game, struct vars s)
 {
     // Loads map data from file
     if (map_load(game, "map.txt") < 0) {
@@ -79,7 +79,7 @@ void game_init(struct game *game)
     game->dir[DOWN].x = 0;
     game->dir[DOWN].y = 1;
 
-    game->pacman.lives = 3;
+    game->pacman.lives = s.var[0];
     game->pacman.power_pill_timer = 0;
     game->pacman.pos.x = game->pacman.spawn.x;
     game->pacman.pos.y = game->pacman.spawn.y;
@@ -121,7 +121,8 @@ bool is_path(const struct game *game, struct pos pos)
         return true;
 }
 
-void pacman_move(struct game *game) {
+void pacman_move(struct game *game, struct vars s)
+{
     struct pos move; // Position to move to
        
     move.x = game->pacman.pos.x + game->dir[game->pacman.dir].x;
@@ -145,7 +146,7 @@ void pacman_move(struct game *game) {
         case CELL_POWER_PILL:
             game->score += 5;
             game->map.cells[move.x][move.y] = CELL_EMPTY;
-            game->pacman.power_pill_timer += 2500;
+            game->pacman.power_pill_timer += s.var[2] * 1000;
             break;
     }
 }
