@@ -1,5 +1,5 @@
-![Menu](https://github.com/MackiGumle/Pacman_SDL2/blob/master/menu.png)
-![Game](https://github.com/MackiGumle/Pacman_SDL2/blob/master/game.png)
+![Menu](https://github.com/MackiGumle/Pacman_SDL2/blob/master/menu.png?raw=true)
+![Game](https://github.com/MackiGumle/Pacman_SDL2/blob/master/game.png?raw=true)
 
 Controls: 
   -menu: 1.up/down select setting
